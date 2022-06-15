@@ -1,3 +1,6 @@
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+var mnemonic = "math razor capable expose worth grape metal sunset metal sudden usage scheme";
+
 module.exports = {
   // Configure your compilers
   compilers: {
@@ -13,5 +16,38 @@ module.exports = {
         //  evmVersion: "byzantium"
       },
     },
+  },
+
+  networks: {
+    // Useful for testing. The `development` name is special - truffle uses it by default
+    // if it's defined here and no other network is specified at the command line.
+    // You should run a client (like ganache-cli, geth or parity) in a separate terminal
+    // tab if you use this network and you must also set the `host`, `port` and `network_id`
+    // options below to some value.
+    //
+    development: {
+     host: "127.0.0.1",     // Localhost (default: none)
+     port: 8545,            // Standard Ethereum port (default: none)
+     network_id: "*",       // Any network (default: none)
+    //  gas: 100000000,
+     provider: () =>
+      new HDWalletProvider(mnemonic, "http://localhost:8545", 0, 10)
+    },
+    testchain0: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 8645,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+      // gas: 100000000,
+      provider: () =>
+       new HDWalletProvider(mnemonic, "http://localhost:8645", 0, 10)
+     },
+     testchain1: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 8745,            // Standard Ethereum port (default: none)
+      network_id: "*",       // Any network (default: none)
+      // gas: 100000000,
+      provider: () =>
+       new HDWalletProvider(mnemonic, "http://localhost:8745", 0, 10)
+     }
   },
 };
